@@ -1,8 +1,15 @@
 from django.http.response import HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
+from.models import *
 
-def index(request): #HttpRequest
-    return HttpResponse("<h1>Page of application Family.<h1>")
+menu = ['About', 'Add articles', 'Contact us', 'Sign In']
+
+def index(request):
+    posts = Family.objects.all()
+    return render(request, 'family/index.html', {'posts': posts, 'menu': menu, 'title':'BILDUK -> home'})
+
+def about(request):
+    return render(request, 'family/about.html', {'menu': menu, 'title':'BILDUK -> about'})
 
 def members(request, membersid):
     return HttpResponse(f"<h1>About member of family</h1><p>{membersid}</p>")

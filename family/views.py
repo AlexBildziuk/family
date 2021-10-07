@@ -6,10 +6,10 @@ menu = ['About', 'Add articles', 'Contact us', 'Sign In']
 
 def index(request):
     posts = Family.objects.all()
-    return render(request, 'family/index.html', {'posts': posts, 'menu': menu, 'title':'BILDUK -> home'})
+    return render(request, 'family/index.html', {'posts': posts, 'menu': menu, 'title':'Bilduk home'})
 
 def about(request):
-    return render(request, 'family/about.html', {'menu': menu, 'title':'BILDUK -> about'})
+    return render(request, 'family/about.html', {'menu': menu, 'title':'Bilduk about'})
 
 def members(request, membersid):
     return HttpResponse(f"<h1>About member of family</h1><p>{membersid}</p>")

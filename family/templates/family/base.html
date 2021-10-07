@@ -1,19 +1,72 @@
+{% load static %}
 <!DOCUMENT html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
         <title>{{ title }}</title>
+        <link type="text/css" href="{% static 'family/css/styles.css' %}" rel="stylesheet" />
+        <link rel="shortcut icon" href="{% static 'family/images/main.ico' %}" type="image/x-icon"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"
     </head>
     <body>
+        <table class="table-page" border=0 cellpadding="0" cellspacing="0">
+        <tr><td valign=top>
         {% block mainmenu %}
-        <ul>
-            {% for m in menu %}
-                <li>{{ m }}
-            {% endfor %}
-        </ul>
+            <div class="header">
+                <ul id="mainmenu" class="mainmenu">
+                <li class="logo"><a href="#"><div class="logo"></div></a></li>
+        {% for m in menu %}
+            {% if not forloop.last %}
+                <li><a href="#">{{ m.title }}</a></li>
+            {% else %}
+                <li class="last"><a href="#">{{ m.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+                </ul>
+                <div class="clear"></div>
+            </div>
         {% endblock mainmenu %}
 
+        <table class="table-content" border=0 cellpadding="0" cellspacing="0">
+        <tr>
+        <!--left Sidebar-->
+            <td valign=top class="left-chapters">
+            <ul id="leftchapters">
+                <li class="selected">All category</li>
+                <li><a href="#">GrandParents</a></li>
+                <li><a href="#">Parents</a></li>
+                <li><a href="#">Children</a></li>
+                <li class="share">
+                <p>Our chanel</p>
+                <a class="share-yt" href="#">
+                </li>
+            </lu>
+            </td>
+        <!--End of Sidebar-->
+
+            <td valign=top class="content">
+                <!--Bread crumbs-->
+                {% block breadcrumbs %}
+                {% endblock breadcrumbs %}
+
+            <!--Block of content-->
+            <div class="content-text">
         {% block content %}
         {% endblock content%}
+            </div>
+            <!--End of content's block-->
+
+        </td></tr></table>
+        </td></tr>
+
+        <!--Footer-->
+        <tr><td valign=top>
+            <div id="footer">
+                <p>Copyright© Aliaksei Bildziuk. v1.0</p>
+            </div>
+        </td></tr></table>
+        <!--End of Footer-->
+
     </body>
 </html>
+
